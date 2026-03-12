@@ -1,4 +1,3 @@
-// queries/list/list.query.ts
 import { Query } from '@nestjs/cqrs';
 import { Author } from '@src/generated/prisma/client';
 

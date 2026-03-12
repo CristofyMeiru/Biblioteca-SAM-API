@@ -1,4 +1,3 @@
-// queries/find-by-id/find-by-id.params.dto.ts
 import { ApiProperty } from '@nestjs/swagger';
 import { IsUUID } from 'class-validator';
 

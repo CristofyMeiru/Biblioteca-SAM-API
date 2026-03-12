@@ -1,4 +1,3 @@
-// queries/find-by-id/find-by-id.handler.ts
 import { NotFoundException } from '@nestjs/common';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { PrismaService } from '@src/shared/services/prisma.service';
