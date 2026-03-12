@@ -16,7 +16,6 @@ export async function bootstrapApp(): Promise<NestFastifyApplication> {
     bodyParser: false,
   });
 
-  app.setGlobalPrefix('api');
   app.enableVersioning({ type: VersioningType.URI });
   setupCors(app);
   setupGlobalPipes(app);

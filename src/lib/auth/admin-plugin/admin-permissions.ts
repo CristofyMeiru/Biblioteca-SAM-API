@@ -9,6 +9,7 @@ const statements = {
   course: ['create', 'delete', 'update'],
   userSchedule: ['create', 'deactivate', 'update'],
   attendanceRecord: ['create', 'deactivate', 'update'],
+  student: ['create', 'update', 'deactivate'],
 } as const;
 
 export const adminAccessControl = createAccessControl(statements);
@@ -21,6 +22,7 @@ export const adminRoles = {
     course: ['create', 'delete', 'update'],
     userSchedule: ['create', 'deactivate', 'update'],
     attendanceRecord: ['create', 'deactivate', 'update'],
+    student: ['create', 'update', 'deactivate'],
   }),
 
   librarian: adminAccessControl.newRole({
@@ -30,6 +32,7 @@ export const adminRoles = {
     course: ['create', 'delete', 'update'],
     userSchedule: ['create', 'deactivate', 'update'],
     attendanceRecord: ['create', 'deactivate', 'update'],
+    student: ['create', 'update', 'deactivate'],
   }),
 
   assistant: adminAccessControl.newRole({
@@ -37,5 +40,6 @@ export const adminRoles = {
     author: ['associate'],
     loan: ['create', 'return'],
     attendanceRecord: ['create'],
+    student: [],
   }),
 };

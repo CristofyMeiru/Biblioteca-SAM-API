@@ -3,10 +3,9 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 export function setupSwagger(app: INestApplication) {
   const config = new DocumentBuilder()
-    .setTitle('Agenda Municipio')
-    .setDescription('Documentação de API para Agenda Municipio')
+    .setTitle('Biblioteca SAM')
+    .setDescription('Documentação da API para Biblioteca SAM')
     .setVersion('1.0')
-    .addServer('/api')
     .build();
 
   const documentFactory = () =>
