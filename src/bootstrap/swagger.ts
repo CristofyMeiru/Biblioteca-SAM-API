@@ -10,7 +10,7 @@ export function setupSwagger(app: INestApplication) {
     .setVersion('1.0')
     .addGlobalResponse(
       { status: 401, type: UnauthorizedResponseDto },
-      { status: 403, type: UnauthorizedResponseDto },
+      { status: 403, type: HttpExceptionResponseDto },
       { status: 500, type: HttpExceptionResponseDto },
       { status: 400, type: HttpExceptionResponseDto },
     )

@@ -9,10 +9,11 @@ export const auth = betterAuth({
   advanced: {
     database: betterAuthDatabaseAdvancedOptions,
   },
+  emailAndPassword: {
+    enabled: true,
+  },
   baseURL: process.env.BASE_URL,
   basePath: '/auth',
   plugins: [adminPlugin, openAPI({ path: '/docs' })],
   trustedOrigins: JSON.parse(String(process.env.CLIENT_ORIGINS)),
 });
-
-console.log(JSON.parse(String(process.env.CLIENT_ORIGINS)));

@@ -1,9 +1,4 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  ForbiddenException,
-  Injectable,
-} from '@nestjs/common';
+import { CanActivate, ExecutionContext, ForbiddenException, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { auth } from '@src/lib/auth';
 import { Permissions, PermissionsMetadata } from '../decorators/permissions.decorator';
@@ -14,10 +9,10 @@ export class HasPermissionGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
-    const permissions = this.reflector.getAllAndOverride<PermissionsMetadata>(
-      Permissions,
-      [context.getHandler(), context.getClass()],
-    );
+    const permissions = this.reflector.getAllAndOverride<PermissionsMetadata>(Permissions, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
 
     const headers = request.headers;
 

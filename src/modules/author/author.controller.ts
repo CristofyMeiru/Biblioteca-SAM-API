@@ -1,22 +1,24 @@
+// author.controller.ts
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { ApiCreatedResponse, ApiOperation } from '@nestjs/swagger';
+import { AuthorEntity } from '@src/common/entities/author.entity';
 import { plainToInstance } from 'class-transformer';
 import { HasPermissionGuard } from '../auth/application/has-permission.guard';
 import { Permissions } from '../auth/decorators/permissions.decorator';
-import * as CreateBook from './commands/create-book';
+import * as CreateAuthor from './commands/create-author';
 
 @UseGuards(HasPermissionGuard)
-@Controller('books')
-export class BookController {
+@Controller('authors')
+export class AuthorController {
   constructor(private readonly commandBus: CommandBus) {}
 
-  @ApiCreatedResponse({ type: CreateBook.Response })
-  @ApiOperation({ description: 'Add a new book to library' })
-  @Permissions({ scope: 'admin', resource: 'book', action: ['create'] })
+  @ApiOperation({ description: 'Create a new author' })
+  @ApiCreatedResponse({ type: AuthorEntity })
+  @Permissions({ scope: 'admin', resource: 'author', action: ['create'] })
   @Post()
-  create(@Body() body: CreateBook.Dto) {
-    const command = plainToInstance(CreateBook.Command, body);
+  async create(@Body() body: CreateAuthor.Dto) {
+    const command = plainToInstance(CreateAuthor.Command, body);
     return this.commandBus.execute(command);
   }
 }
