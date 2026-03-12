@@ -10,6 +10,7 @@ import { Permissions } from '../auth/decorators/permissions.decorator';
 import * as CreateAuthor from './commands/create-author';
 import * as FindById from './queries/find-by-id';
 import * as ListAuthors from './queries/list-authors';
+import { PaginatedAuthorEntity } from './queries/list-authors/list-authors.response-dto';
 
 @UseGuards(HasPermissionGuard)
 @Controller('authors')
@@ -19,17 +20,17 @@ export class AuthorController {
     private readonly queryBus: QueryBus,
   ) {}
 
+  @Permissions({ scope: 'admin', resource: 'author', action: ['create'] })
   @ApiOperation({ description: 'Create a new author' })
   @ApiCreatedResponse({ type: AuthorEntity })
-  @Permissions({ scope: 'admin', resource: 'author', action: ['create'] })
   @Post()
   async create(@Body() body: CreateAuthor.Dto) {
     const command = plainToInstance(CreateAuthor.Command, body);
     return this.commandBus.execute(command);
   }
 
-  @Permissions({ scope: 'admin', resource: 'author', action: ['read'] })
-  @ApiOperation({ summary: 'List authors' })
+  @AllowAnonymous()
+  @ApiOperation({ description: 'List authors' })
   @ApiOkResponse({ type: PaginatedAuthorEntity })
   @Get()
   list(@Query() queryParams: ListAuthors.QueryParamsDto) {
