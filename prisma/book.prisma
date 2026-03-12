@@ -1,0 +1,34 @@
+model Author {
+  id        String   @id @default(uuid(7))
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  books Book[]
+
+  @@map("author")
+}
+
+model Book {
+  id                String   @id @default(uuid(7))
+  title             String
+  publisher         String
+  materialType      String?  @map("material_type")
+  acquisitionMethod String   @map("acquisition_method")
+  pagesQuantity     Int?     @map("pages_quantity")
+  genre             String
+  isbn              String?
+  quantity          Int
+  loanedQuantity    Int      @default(0) @map("loaned_quantity")
+  cddOrCdu          String?  @map("cdd_or_cdu")
+  tombo             String?
+  edition           String?
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  authorId String @map("author_id")
+  author   Author @relation(fields: [authorId], references: [id])
+  loans    Loan[]
+
+  @@map("book")
+}

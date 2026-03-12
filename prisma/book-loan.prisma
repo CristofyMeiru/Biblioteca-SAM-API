@@ -1,0 +1,25 @@
+model Loan {
+  id           String     @id @default(uuid(7))
+  studentId    String
+  bookId       String
+  loanedById   String
+  returnedById String?
+  loanDate     DateTime   @default(now())
+  dueDate      DateTime
+  returnDate   DateTime?
+  status       LoanStatus @default(ACTIVE)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  student      Student    @relation(fields: [studentId], references: [id])
+  book         Book       @relation(fields: [bookId], references: [id])
+  loanedBy     User       @relation("LoanedBy", fields: [loanedById], references: [id])
+  returnedBy   User?      @relation("ReturnedBy", fields: [returnedById], references: [id])
+
+  @@map("loan")
+}
+
+enum LoanStatus {
+  ACTIVE
+  RETURNED
+  OVERDUE
+}

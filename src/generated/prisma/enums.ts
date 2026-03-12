@@ -9,7 +9,32 @@
 * 🟢 You can import this file directly.
 */
 
+export const WeekDay = {
+  MONDAY: 'MONDAY',
+  TUESDAY: 'TUESDAY',
+  WEDNESDAY: 'WEDNESDAY',
+  THURSDAY: 'THURSDAY',
+  FRIDAY: 'FRIDAY',
+  SATURDAY: 'SATURDAY',
+  SUNDAY: 'SUNDAY'
+} as const
+
+export type WeekDay = (typeof WeekDay)[keyof typeof WeekDay]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const LoanStatus = {
+  ACTIVE: 'ACTIVE',
+  RETURNED: 'RETURNED',
+  OVERDUE: 'OVERDUE'
+} as const
+
+export type LoanStatus = (typeof LoanStatus)[keyof typeof LoanStatus]
+
+
+export const GradeLevel = {
+  FIRST: 'FIRST',
+  SECOND: 'SECOND',
+  THIRD: 'THIRD'
+} as const
+
+export type GradeLevel = (typeof GradeLevel)[keyof typeof GradeLevel]

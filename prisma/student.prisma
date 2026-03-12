@@ -1,0 +1,32 @@
+enum GradeLevel {
+  FIRST // 1º ano
+  SECOND // 2º ano
+  THIRD // 3º ano
+}
+
+model Student {
+  id         String   @id @default(uuid(7))
+  fullname   String
+  rollNumber Int      @unique
+  userId     String?  @unique
+  courseId   String
+  loans      Loan[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User?    @relation(fields: [userId], references: [id])
+  course     Course   @relation(fields: [courseId], references: [id])
+
+  @@map("student")
+}
+
+model Course {
+  id         String     @id @default(uuid(7))
+  name       String
+  slug       String     @unique
+  gradeLevel GradeLevel
+  students   Student[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  @@map("course")
+}

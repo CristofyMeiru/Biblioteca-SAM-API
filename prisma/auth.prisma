@@ -8,6 +8,15 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  loansCreated  Loan[]    @relation("LoanedBy")
+  loansReceived Loan[]    @relation("ReturnedBy")
+  student       Student?
+
+  role          String?
+  banned        Boolean?       @default(false)
+  banReason     String?
+  banExpires    DateTime?
+  userSchedules UserSchedule[]
 
   @@unique([email])
   @@map("user")
@@ -23,6 +32,8 @@ model Session {
   userAgent String?
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  impersonatedBy String?
 
   @@unique([token])
   @@index([userId])
