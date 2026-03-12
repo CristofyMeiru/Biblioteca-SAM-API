@@ -8,7 +8,7 @@ export function setupScalar(app: INestApplication) {
       theme: 'deepSpace',
       sources: [
         { url: '/openapi.json', title: 'API' },
-        { url: '/api/auth/open-api/generate-schema', title: 'Auth' },
+        { url: '/auth/open-api/generate-schema', title: 'Auth' },
       ],
       withFastify: true,
     }),
