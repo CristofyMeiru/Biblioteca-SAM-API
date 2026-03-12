@@ -15,7 +15,7 @@ model UserSchedule {
   active     Boolean   @default(true)
   assignedAt DateTime  @default(now())
   revokedAt  DateTime?
-  user       User      @relation(fields: [userId], references: [id])
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("user_schedule")
 }

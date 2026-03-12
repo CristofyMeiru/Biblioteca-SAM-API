@@ -27,7 +27,7 @@ model Book {
   updatedAt         DateTime @updatedAt @map("updated_at")
 
   authorId String @map("author_id")
-  author   Author @relation(fields: [authorId], references: [id])
+  author   Author @relation(fields: [authorId], references: [id], onDelete: Cascade)
   loans    Loan[]
 
   @@map("book")

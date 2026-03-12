@@ -10,10 +10,10 @@ model Loan {
   status       LoanStatus @default(ACTIVE)
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
-  student      Student    @relation(fields: [studentId], references: [id])
-  book         Book       @relation(fields: [bookId], references: [id])
-  loanedBy     User       @relation("LoanedBy", fields: [loanedById], references: [id])
-  returnedBy   User?      @relation("ReturnedBy", fields: [returnedById], references: [id])
+  student      Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  book         Book       @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  loanedBy     User       @relation("LoanedBy", fields: [loanedById], references: [id], onDelete: NoAction)
+  returnedBy   User?      @relation("ReturnedBy", fields: [returnedById], references: [id], onDelete: NoAction)
 
   @@map("loan")
 }

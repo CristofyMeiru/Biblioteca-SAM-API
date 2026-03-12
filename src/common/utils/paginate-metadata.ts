@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsArray, IsInt, Min } from 'class-validator';
-import { AuthorEntity } from '../entities';
 
 export function PaginatedMetadata<T>(classRef: new () => T) {
   class PaginatedEntityClass {
@@ -26,5 +25,3 @@ export function PaginatedMetadata<T>(classRef: new () => T) {
 
   return PaginatedEntityClass;
 }
-
-
