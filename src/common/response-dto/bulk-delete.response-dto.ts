@@ -3,7 +3,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsArray, IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class BulkDeleteResponseDto {
-  @ApiProperty({ example: 'All [entity] deleted successfully' })
+  @ApiProperty({ example: 'Todos os [entity] foram deletados com sucesso' })
   @IsString()
   message: string;
 
