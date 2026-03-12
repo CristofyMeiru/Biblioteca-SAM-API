@@ -9,7 +9,7 @@ enum WeekDay {
 }
 
 model UserSchedule {
-  id         String    @id @default(dbgenerated("gen_random_uuid()"))
+  id         String    @id @default(uuid(7))
   userId     String
   weekDay    WeekDay
   active     Boolean   @default(true)
@@ -21,7 +21,7 @@ model UserSchedule {
 }
 
 model AttendanceRecord {
-  id     String   @id @default(dbgenerated("gen_random_uuid()"))
+  id     String   @id @default(uuid(7))
   date   DateTime
   active Boolean  @default(true)
   reason String?
